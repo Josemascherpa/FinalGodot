@@ -11,7 +11,13 @@ config_version=4
 [application]
 
 config/name="ProyectoFinalGodot"
+run/main_scene="res://Niveles/Level1.tscn"
 config/icon="res://icon.png"
+
+[display]
+
+window/size/height=768
+window/size/resizable=false
 
 [physics]
 
