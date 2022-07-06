@@ -1,0 +1,59 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Sprites && Escenas/Bullet/bullet.png" type="Texture" id=1]
+[ext_resource path="res://Sprites && Escenas/Bullet/BulletNormal.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 3, 1.5 )
+
+[sub_resource type="Animation" id=8]
+resource_name = "Bullet"
+length = 1.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.4, 0.8, 1.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 3 ]
+}
+
+[sub_resource type="Animation" id=9]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[node name="Bullet" type="Area2D"]
+position = Vector2( 497, 521 )
+script = ExtResource( 2 )
+SPEED = 400
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 1 )
+hframes = 2
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 0.5 )
+shape = SubResource( 7 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Bullet"
+anims/Bullet = SubResource( 8 )
+anims/RESET = SubResource( 9 )
+
+[connection signal="body_entered" from="." to="." method="_on_Bullet_body_entered"]

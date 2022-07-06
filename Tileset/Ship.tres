@@ -3,7 +3,7 @@
 [ext_resource path="res://Tileset/tileset_sf.png" type="Texture" id=1]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
-points = PoolVector2Array( 0, 0, 64, 0, 63.937, 32.7994, 0, 32.5669 )
+points = PoolVector2Array( 0, 0, 64, 0, 64, 33.0507, 0.00219727, 33.0507 )
 
 [sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 64, 0, 63.7692, 34.1948, 0.0455322, 34.282 )
@@ -12,10 +12,10 @@ points = PoolVector2Array( 0, 0, 64, 0, 63.7692, 34.1948, 0.0455322, 34.282 )
 points = PoolVector2Array( 0, 0, 64, 0, 63.8528, 34.282, 0.129211, 34.0494 )
 
 [sub_resource type="ConvexPolygonShape2D" id=4]
-points = PoolVector2Array( 0, 0, 64, 0, 64, 35.6774, 0.104675, 35.6774 )
+points = PoolVector2Array( 0, 0, 64, 0, 64, 32.9296, 0, 32.7681 )
 
 [sub_resource type="ConvexPolygonShape2D" id=5]
-points = PoolVector2Array( 0, 0, 64, 0, 64, 32.0436, 0, 32.2761 )
+points = PoolVector2Array( 0, 0, 64, 0, 64, 32.768, 0, 32.8892 )
 
 [sub_resource type="ConvexPolygonShape2D" id=6]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 33.2064, 0, 33.2064 )
@@ -108,13 +108,13 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 
 [sub_resource type="ConvexPolygonShape2D" id=33]
-points = PoolVector2Array( 0, 0, 64, 0, 64, 37.7675, 0.166138, 37.7675 )
+points = PoolVector2Array( 0, 0, 64, 0, 64, 32.8892, 0, 32.8892 )
 
 [sub_resource type="ConvexPolygonShape2D" id=34]
-points = PoolVector2Array( 0, 0, 64, 0, 63.4717, 36.8994, 0.277222, 36.8994 )
+points = PoolVector2Array( 0, 0, 64, 0, 64, 32.8892, 0, 32.7277 )
 
 [sub_resource type="ConvexPolygonShape2D" id=35]
-points = PoolVector2Array( 0, 0, 64, 0, 63.6505, 36.288, 0, 36.0554 )
+points = PoolVector2Array( 0, 0, 64, 0, 63.9332, 32.6309, 0, 32.8246 )
 
 [resource]
 1/name = "tileset_sf.png 1"

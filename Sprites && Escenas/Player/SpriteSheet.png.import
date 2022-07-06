@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Run.png-2e20f14c6813c9464cf5e5fc271e8cee.stex"
+path="res://.import/SpriteSheet.png-ef096d87c81c632d9c6b077699eb9749.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Player/Run.png"
-dest_files=[ "res://.import/Run.png-2e20f14c6813c9464cf5e5fc271e8cee.stex" ]
+source_file="res://Sprites && Escenas/Player/SpriteSheet.png"
+dest_files=[ "res://.import/SpriteSheet.png-ef096d87c81c632d9c6b077699eb9749.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
