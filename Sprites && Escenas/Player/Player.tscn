@@ -1,0 +1,132 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Sprites && Escenas/Player/SpriteSheet.png" type="Texture" id=1]
+[ext_resource path="res://PowerUps/Protect/Protect.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Sprites && Escenas/Bullet/BulletNormal.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Sprites && Escenas/Player/Player.gd" type="Script" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 10, 25.25 )
+
+[sub_resource type="Animation" id=4]
+resource_name = "Idle"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 13, 14 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"update": 0,
+"values": [  ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "Run"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 6, 7, 8, 9, 10 ]
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "Shot"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 12, 13 ]
+}
+
+[node name="Player" type="KinematicBody2D"]
+position = Vector2( 477, 510 )
+script = ExtResource( 4 )
+bullet_normal = ExtResource( 3 )
+shield = ExtResource( 2 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+current = true
+
+[node name="Sprite" type="Sprite" parent="."]
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 1 )
+hframes = 4
+vframes = 4
+frame = 13
+
+[node name="position1" type="Position2D" parent="Sprite"]
+position = Vector2( 16.6667, -2 )
+scale = Vector2( 0.666667, 0.666667 )
+__meta__ = {
+"_gizmo_extents_": 7.1
+}
+
+[node name="position2" type="Position2D" parent="Sprite"]
+position = Vector2( 16.6667, 7.33331 )
+scale = Vector2( 0.666667, 0.666667 )
+__meta__ = {
+"_gizmo_extents_": 7.1
+}
+
+[node name="position3" type="Position2D" parent="Sprite"]
+position = Vector2( 16.6667, 16.6667 )
+scale = Vector2( 0.666667, 0.666667 )
+__meta__ = {
+"_gizmo_extents_": 7.1
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 2, 22.25 )
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+playback_speed = 2.29
+anims/Idle = SubResource( 4 )
+anims/RESET = SubResource( 3 )
+anims/Run = SubResource( 5 )
+anims/Shot = SubResource( 6 )
+
+[node name="TimerRainOfBullets" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="positionProtect" type="Position2D" parent="."]
+position = Vector2( -1, 15 )
+scale = Vector2( 0.666667, 0.666667 )
+__meta__ = {
+"_gizmo_extents_": 7.1
+}
+
+[connection signal="timeout" from="TimerRainOfBullets" to="." method="_on_TimerRainOfBullets_timeout"]

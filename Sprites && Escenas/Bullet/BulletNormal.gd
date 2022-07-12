@@ -15,4 +15,9 @@ func _physics_process(delta):
 	move_local_x(direction*SPEED*delta)
 
 func _on_Bullet_body_entered(body):
+	SPEED=0
+	$AnimationPlayer.play("Collision") 
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):	
 	queue_free()
