@@ -6,8 +6,12 @@ export (PackedScene) var shield
 onready var arrayPosition = [$Sprite/position1,$Sprite/position2,$Sprite/position3]
 var flip=1.5
 var rainOfBullets:bool=false
+var shieldPU:bool=false##BOLEANO PARA QE NO SE INSTANCIE EN CADA FRAME
 export var cooldown=5
 onready var TimingRainOfBullets = $TimerRainOfBullets
+onready var TimingShield = $TimerShield
+var protectShield#GUARDO INSTANCIA DEL ESCUDO PARA BORRARLA LUEGO
+var life=100
 
 func _ready():
 	set_process_input(true)
@@ -17,7 +21,11 @@ func _process(delta):
 		match rainOfBullets:
 			false: shot(bullet_normal,$Sprite.scale.x)
 			true: shotThree(bullet_normal,$Sprite.scale.x)
-
+	if(shieldPU):
+		protect()
+		shieldPU=false
+		
+	
 func _physics_process(_delta):	
 	move_and_slide(moveAndAnimations())
 
@@ -46,10 +54,10 @@ func moveAndAnimations() -> Vector2:#retorno el vector2 para no hacerlo en el ev
 	movement = movement.normalized()*SPEED	
 	return movement
 	
-func protect():
-	var protect = shield.instance()
-	self.add_child(protect)
-	protect.position = $positionProtect.position
+func protect():	
+	protectShield = shield.instance()
+	self.add_child(protectShield)
+	protectShield.position = $positionProtect.position
 
 func shot(bullet,directionX):
 	var bulletInst = bullet.instance()
@@ -66,3 +74,9 @@ func shotThree(bullet,directionX):
 
 func _on_TimerRainOfBullets_timeout():
 	rainOfBullets=false
+	TimingRainOfBullets.stop()
+
+func _on_TimerShield_timeout():###SHIELD
+	protectShield.queue_free()
+	protectShield = null	
+	TimingShield.stop()

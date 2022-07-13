@@ -6,7 +6,7 @@
 [ext_resource path="res://Sprites && Escenas/Player/Player.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10, 25.25 )
+extents = Vector2( 7.75, 25.5625 )
 
 [sub_resource type="Animation" id=4]
 resource_name = "Idle"
@@ -78,6 +78,7 @@ shield = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 0.8, 0.8 )
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 1.5, 1.5 )
@@ -108,7 +109,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 2, 22.25 )
+position = Vector2( -0.75, 21 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -129,4 +130,8 @@ __meta__ = {
 "_gizmo_extents_": 7.1
 }
 
+[node name="TimerShield" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="timeout" from="TimerRainOfBullets" to="." method="_on_TimerRainOfBullets_timeout"]
+[connection signal="timeout" from="TimerShield" to="." method="_on_TimerShield_timeout"]
