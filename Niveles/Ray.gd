@@ -1,9 +1,10 @@
 extends Area2D
-
+export var cooldown = 10
 func _ready():
-	pass # Replace with function body.
+	$TimerStart.start(cooldown)
 
 func _process(delta):	
-	if($Timer.time_left<=0.3):
+	
+	if($TimerStart.time_left<=0.1):		
 		$AnimationPlayer.play("ray")
-		$Timer.start()
+		$AnimationPlayer.animation_set_next("ray","stop")

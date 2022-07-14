@@ -1,0 +1,198 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Trampas/Tower/BulletTower.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Trampas/Tower/trampadisparos.png" type="Texture" id=2]
+[ext_resource path="res://Trampas/Tower/FireTower.gd" type="Script" id=3]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 19.0263
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 1 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0.929412, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Sprite:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "Shot"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.6, 4, 4.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 1, 0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.7, 1.2, 2.2, 3.3, 4.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1.2, 3.3, 4.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "shot"
+}, {
+"args": [  ],
+"method": "shot"
+}, {
+"args": [  ],
+"method": "restartTime"
+} ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Sprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
+
+[node name="FireColumn" type="StaticBody2D"]
+position = Vector2( 950, 569 )
+script = ExtResource( 3 )
+bullet = ExtResource( 1 )
+cooldown = 3
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 0, 0.929412, 1, 1 )
+scale = Vector2( 0.432099, 0.388889 )
+texture = ExtResource( 2 )
+hframes = 2
+frame = 1
+
+[node name="Position2DHigh" type="Position2D" parent="Sprite"]
+position = Vector2( 0.000183105, -64.2856 )
+scale = Vector2( 2.31429, 2.57143 )
+__meta__ = {
+"_gizmo_extents_": 9.4
+}
+
+[node name="Position2DHighLook" type="Position2D" parent="Sprite/Position2DHigh"]
+position = Vector2( -6.10352e-05, -15 )
+__meta__ = {
+"_gizmo_extents_": 9.4
+}
+
+[node name="Position2DRight" type="Position2D" parent="Sprite"]
+position = Vector2( 67.1143, -0.0649414 )
+rotation = 1.5708
+scale = Vector2( 2.31429, 2.57143 )
+
+[node name="Position2DRightLook" type="Position2D" parent="Sprite/Position2DRight"]
+position = Vector2( 0.0252075, -17.7777 )
+rotation = 3.55271e-15
+
+[node name="Position2DLeft" type="Position2D" parent="Sprite"]
+position = Vector2( -67.1128, -0.0576172 )
+rotation = 1.5708
+scale = Vector2( 2.31429, 2.57143 )
+
+[node name="Position2DLeftLook" type="Position2D" parent="Sprite/Position2DLeft"]
+position = Vector2( 0.0224609, 19.4451 )
+rotation = 3.55271e-15
+
+[node name="Position2DDown" type="Position2D" parent="Sprite"]
+position = Vector2( 0, 66.123 )
+scale = Vector2( 2.31429, 2.57143 )
+
+[node name="Position2DDownLook" type="Position2D" parent="Sprite/Position2DDown"]
+position = Vector2( 0, 13.2855 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 2 )
+anims/Shot = SubResource( 3 )
+anims/idle = SubResource( 4 )
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
