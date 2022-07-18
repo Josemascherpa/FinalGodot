@@ -1,7 +1,6 @@
 extends StaticBody2D
 
 export (PackedScene) var bullet
-export var SPEEDBULLET=100
 export var SPEEDROTATION = 50
 onready var arrayPosition = [$Sprite/Position2DHigh,$Sprite/Position2DRight,$Sprite/Position2DLeft,$Sprite/Position2DDown]
 export var cooldown = 5

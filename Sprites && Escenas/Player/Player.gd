@@ -1,5 +1,6 @@
 extends KinematicBody2D
 
+onready var boton=get_node("/root/Level1/Boton")
 export(float) var SPEED=180
 export (PackedScene) var bullet_normal #BALA NORMAL
 export (PackedScene) var shield
@@ -12,15 +13,20 @@ onready var TimingRainOfBullets = $TimerRainOfBullets
 onready var TimingShield = $TimerShield
 var protectShield#GUARDO INSTANCIA DEL ESCUDO PARA BORRARLA LUEGO
 var life=100
+var stayBoton=false
 
 func _ready():
 	set_process_input(true)
-		
+	
+	
 func _process(delta):		
 	if (Input.is_action_just_pressed("shot")):		
 		match rainOfBullets:
 			false: shot(bullet_normal,$Sprite.scale.x)
 			true: shotThree(bullet_normal,$Sprite.scale.x)
+	if(Input.is_action_just_pressed("Press") && stayBoton):
+		boton.Press()
+		
 	if(shieldPU):
 		protect()
 		shieldPU=false
@@ -80,3 +86,12 @@ func _on_TimerShield_timeout():###SHIELD
 	protectShield.queue_free()
 	protectShield = null	
 	TimingShield.stop()
+
+
+
+func _on_Boton_body_entered(body):
+	stayBoton=true
+
+
+func _on_Boton_body_exited(body):
+	stayBoton=false
