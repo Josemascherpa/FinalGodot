@@ -54,4 +54,9 @@ lifetime = 2.5
 process_material = SubResource( 2 )
 texture = ExtResource( 3 )
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
 [connection signal="body_entered" from="." to="." method="_on_Shield_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

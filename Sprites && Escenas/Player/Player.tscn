@@ -133,5 +133,12 @@ __meta__ = {
 [node name="TimerShield" type="Timer" parent="."]
 wait_time = 5.0
 
+[node name="position4" type="Position2D" parent="."]
+position = Vector2( 116, 24 )
+scale = Vector2( 1, 1 )
+__meta__ = {
+"_gizmo_extents_": 7.1
+}
+
 [connection signal="timeout" from="TimerRainOfBullets" to="." method="_on_TimerRainOfBullets_timeout"]
 [connection signal="timeout" from="TimerShield" to="." method="_on_TimerShield_timeout"]
