@@ -3,7 +3,7 @@ extends StaticBody2D
 export (PackedScene) var bullet
 export var SPEEDROTATION = 50
 onready var arrayPosition = [$Sprite/Position2DHigh,$Sprite/Position2DRight,$Sprite/Position2DLeft,$Sprite/Position2DDown]
-export var cooldown = 5
+export var cooldown:float = 5
 
 func _ready():
 	$Timer.start(5)
@@ -19,6 +19,7 @@ func shot():
 		
 func restartTime():
 	$Timer.start(cooldown)
+	$AnimationPlayer.play("idle")
 
 
 func _on_Timer_timeout():

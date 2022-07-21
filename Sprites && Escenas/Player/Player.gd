@@ -1,10 +1,10 @@
 extends KinematicBody2D
 
+##USAR DOS NAIMATION PARA HACER EFECTOS DE SHADERS 
 onready var boton=get_node("/root/Level1/Boton")
 export(float) var SPEED=180
 export (PackedScene) var bullet_normal #BALA NORMAL
 export (PackedScene) var shield
-export (PackedScene) var pruebaRainof
 onready var arrayPosition = [$Sprite/position1,$Sprite/position2,$Sprite/position3]
 var flip=1.5
 var rainOfBullets:bool=false
@@ -24,11 +24,8 @@ func _process(delta):
 	if (Input.is_action_just_pressed("shot")):		
 		match rainOfBullets:
 			false: shot(bullet_normal,$Sprite.scale.x)
-			true: shotThree(bullet_normal,$Sprite.scale.x)
-	if (Input.is_action_just_pressed("shot3")):		
-		var asd = pruebaRainof.instance()
-		self.add_child(asd)
-		asd.position = $position4.position
+			true: shotThree(bullet_normal,$Sprite.scale.x)		
+				
 	if(Input.is_action_just_pressed("Press") && stayBoton):
 		boton.Press()
 		
@@ -91,8 +88,6 @@ func _on_TimerShield_timeout():###SHIELD
 	protectShield.queue_free()
 	protectShield = null	
 	TimingShield.stop()
-
-
 
 func _on_Boton_body_entered(body):
 	stayBoton=true

@@ -1,7 +1,7 @@
 extends Area2D
 
 func _ready():
-	$Sprite.material.set_shader_param("sum",1.0)	
+	$Sprite.material.set_shader_param("sum",0.8)	
 
 func _process(delta):
 	if($Timer.time_left<3.0):		

@@ -1,8 +1,11 @@
 extends Area2D
 
+func _ready():
+	$Sprite.material.set_shader_param("sum",0.8)	
 
-##Puede que convenga iniciar el timer con el ready
-
+func _process(delta):
+	if($Timer.time_left<3.0):		
+		$AnimationPlayer.play("Flicker")
 
 func _on_Shield_body_entered(body):
 	if(body.get_name()=="Player"):

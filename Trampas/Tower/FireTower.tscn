@@ -60,7 +60,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id=3]
 resource_name = "Shot"
-length = 5.0
+length = 4.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -68,10 +68,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.6, 4, 4.6 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PoolRealArray( 0, 3.4 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 0, 1, 1, 0 ]
+"values": [ 1, 1 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Sprite:modulate")
@@ -80,7 +80,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.7, 1.2, 2.2, 3.3, 4.1 ),
+"times": PoolRealArray( 0.1, 0.6, 1.6, 2.7, 3.5 ),
 "transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ), Color( 0, 0, 0, 1 ), Color( 1, 1, 1, 1 ) ]
@@ -92,7 +92,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 1.2, 3.3, 4.1 ),
+"times": PoolRealArray( 0.6, 2.7, 3.5 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -137,7 +137,6 @@ tracks/1/keys = {
 position = Vector2( 950, 569 )
 script = ExtResource( 3 )
 bullet = ExtResource( 1 )
-cooldown = 3
 
 [node name="Sprite" type="Sprite" parent="."]
 modulate = Color( 0, 0.929412, 1, 1 )
@@ -188,7 +187,7 @@ position = Vector2( 0, 13.2855 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "RESET"
+autoplay = "Shot"
 anims/RESET = SubResource( 2 )
 anims/Shot = SubResource( 3 )
 anims/idle = SubResource( 4 )

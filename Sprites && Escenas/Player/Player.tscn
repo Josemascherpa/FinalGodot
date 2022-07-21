@@ -1,9 +1,38 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=15 format=2]
 
 [ext_resource path="res://Sprites && Escenas/Player/SpriteSheet.png" type="Texture" id=1]
 [ext_resource path="res://PowerUps/Protect/Protect.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Sprites && Escenas/Bullet/BulletNormal.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Sprites && Escenas/Player/Player.gd" type="Script" id=4]
+
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+
+uniform vec4 line_color : hint_color = vec4(1);
+uniform float line_thickness : hint_range(0, 10) = 1.0;
+
+void fragment() {
+	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;//Tamaño de linea por fuera
+	//ENTENDER BIEN CADA LINEA
+	float outline = texture(TEXTURE, UV + vec2(-size.x, 0)).a;
+	outline += texture(TEXTURE, UV + vec2(0, size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(size.x, 0)).a;
+	outline += texture(TEXTURE, UV + vec2(0, -size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(-size.x, size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(size.x, size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(-size.x, -size.y)).a;
+	outline += texture(TEXTURE, UV + vec2(size.x, -size.y)).a;
+	outline = min(outline, 1.0);
+	
+	vec4 color = texture(TEXTURE, UV);
+	COLOR = mix(color, line_color, outline - color.a);
+}"
+
+[sub_resource type="ShaderMaterial" id=8]
+resource_local_to_scene = true
+shader = SubResource( 7 )
+shader_param/line_color = Color( 1, 0, 0, 1 )
+shader_param/line_thickness = 0.0
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.75, 25.5625 )
@@ -70,6 +99,52 @@ tracks/0/keys = {
 "values": [ 12, 13 ]
 }
 
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/line_thickness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=9]
+resource_name = "flickerLine"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/line_thickness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6, 0.8, 1, 1.2, 1.4, 1.6, 1.8, 2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 2.0, 0.5, 2.0, 0.5, 2.0, 0.5, 2.0, 0.5, 2.0, 0.5, 0.0 ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:material:shader_param/line_thickness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 477, 510 )
 script = ExtResource( 4 )
@@ -81,11 +156,12 @@ current = true
 zoom = Vector2( 0.8, 0.8 )
 
 [node name="Sprite" type="Sprite" parent="."]
+material = SubResource( 8 )
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 1 )
 hframes = 4
 vframes = 4
-frame = 13
+frame = 14
 
 [node name="position1" type="Position2D" parent="Sprite"]
 position = Vector2( 16.6667, -2 )
@@ -133,12 +209,11 @@ __meta__ = {
 [node name="TimerShield" type="Timer" parent="."]
 wait_time = 5.0
 
-[node name="position4" type="Position2D" parent="."]
-position = Vector2( 116, 24 )
-scale = Vector2( 1, 1 )
-__meta__ = {
-"_gizmo_extents_": 7.1
-}
+[node name="AnimationEffects" type="AnimationPlayer" parent="."]
+autoplay = "idle"
+anims/RESET = SubResource( 10 )
+anims/flickerLine = SubResource( 9 )
+anims/idle = SubResource( 11 )
 
 [connection signal="timeout" from="TimerRainOfBullets" to="." method="_on_TimerRainOfBullets_timeout"]
 [connection signal="timeout" from="TimerShield" to="." method="_on_TimerShield_timeout"]
