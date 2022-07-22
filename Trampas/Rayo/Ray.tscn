@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=2]
 
-[ext_resource path="res://Niveles/Ray.gd" type="Script" id=1]
+[ext_resource path="res://Trampas/Rayo/Ray.gd" type="Script" id=1]
 [ext_resource path="res://Trampas/Rayo/ray.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=15]
@@ -233,6 +233,7 @@ tracks/4/keys = {
 [node name="Ray" type="Area2D"]
 position = Vector2( 841, 957 )
 script = ExtResource( 1 )
+cooldown = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, -104.5 )
@@ -254,3 +255,5 @@ anims/ray = SubResource( 2 )
 anims/stop = SubResource( 17 )
 
 [node name="TimerStart" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_Ray_body_entered"]

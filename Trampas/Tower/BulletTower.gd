@@ -20,8 +20,12 @@ func _physics_process(delta):
 
 
 func _on_BulletColumn_area_entered(area):
-	queue_free() # Replace with function body.
+	if(area.name == "Protect"):
+		queue_free()
+	
 
 
 func _on_BulletColumn_body_entered(body):
+	if(body.name == "Player"):		
+		body.hurt()
 	queue_free() # Replace with function body.

@@ -6,7 +6,7 @@
 [sub_resource type="Animation" id=1]
 resource_name = "Press"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Boton:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -21,7 +21,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=2]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/path = NodePath("Boton:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -33,7 +33,7 @@ tracks/0/keys = {
 "values": [ Vector2( 1, 0 ) ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite:frame")
+tracks/1/path = NodePath("Boton:frame")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -48,7 +48,7 @@ tracks/1/keys = {
 [sub_resource type="Animation" id=3]
 resource_name = "UnPress"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame_coords")
+tracks/0/path = NodePath("Boton:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -82,7 +82,7 @@ position = Vector2( 736, 646 )
 scale = Vector2( 0.315363, 0.36781 )
 script = ExtResource( 2 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Boton" type="Sprite" parent="."]
 texture = ExtResource( 1 )
 hframes = 2
 
@@ -108,3 +108,5 @@ amount = 15
 lifetime = 0.5
 speed_scale = 0.5
 process_material = SubResource( 6 )
+
+[node name="text" type="Sprite" parent="."]

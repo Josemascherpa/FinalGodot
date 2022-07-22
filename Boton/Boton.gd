@@ -1,6 +1,6 @@
 extends Area2D
 
-onready var doorlvl1= get_node("/root/Level1/doorLvl1")
+onready var doorlvl1= get_node("/root/Manager/Level1/doorLvl1")
 var opened:bool=false
 
 func Press():

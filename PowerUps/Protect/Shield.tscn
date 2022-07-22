@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://PowerUps/Protect/shield.png" type="Texture" id=1]
-[ext_resource path="res://Niveles/Shield.gd" type="Script" id=2]
+[ext_resource path="res://PowerUps/Protect/Shield.gd" type="Script" id=2]
 [ext_resource path="res://PowerUps/Protect/2.3.png" type="Texture" id=3]
 
 [sub_resource type="Shader" id=7]
@@ -46,7 +46,7 @@ initial_velocity = 8.0
 orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 angle_curve = SubResource( 6 )
-scale = 0.04
+scale = 0.08
 color = Color( 0, 0.941176, 1, 1 )
 color_ramp = SubResource( 4 )
 
@@ -103,7 +103,7 @@ process_material = SubResource( 2 )
 texture = ExtResource( 3 )
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 8.0
 autostart = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
