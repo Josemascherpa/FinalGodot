@@ -167,7 +167,6 @@ shield = ExtResource( 2 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 0.9, 0.9 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 8 )
@@ -175,7 +174,7 @@ scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 1 )
 hframes = 4
 vframes = 4
-frame = 14
+frame = 13
 
 [node name="position1" type="Position2D" parent="Sprite"]
 position = Vector2( 16.6667, -2 )
@@ -203,6 +202,7 @@ position = Vector2( -0.75, 21 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
 playback_speed = 2.29
 anims/Idle = SubResource( 4 )
 anims/RESET = SubResource( 3 )

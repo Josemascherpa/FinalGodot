@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/stair.png-5ce4eb8fa7658dce361afcd41c8d6631.stex"
+path="res://.import/backgroudn.png-a170c7530750b6229f49979b8a75dcc5.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://stair.png"
-dest_files=[ "res://.import/stair.png-5ce4eb8fa7658dce361afcd41c8d6631.stex" ]
+source_file="res://Sprites && Escenas/backgroudn.png"
+dest_files=[ "res://.import/backgroudn.png-a170c7530750b6229f49979b8a75dcc5.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2

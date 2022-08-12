@@ -24,8 +24,8 @@ func _ready():
 	set_process_input(true)
 	
 	
-func _process(delta):		
-	#print(life)	
+func _process(delta):	
+	
 	if (Input.is_action_just_pressed("shot") && !noShot):		
 		match rainOfBullets:
 			false: shot(bullet_normal,$Sprite.scale.x)
@@ -56,10 +56,10 @@ func moveAndAnimations() -> Vector2:#retorno el vector2 para no hacerlo en el ev
 		$Sprite.scale.x=-flip
 	if (Input.is_action_pressed("move_right")):
 		movement += Vector2(1, 0)		
-		$AnimationPlayer.play("Run")
+		$AnimationPlayer.play("Run")		
 		$Sprite.scale.x = flip	
-	if(Input.is_action_pressed("shot") && movement == Vector2(0,0)):
-		$AnimationPlayer.play("Shot")
+	if(Input.is_action_just_pressed("shot") && movement == Vector2(0,0)):
+		$AnimationPlayer.play("Shot")		
 	elif(movement == Vector2(0,0)):		
 		$AnimationPlayer.play("Idle")	
 		
@@ -85,7 +85,7 @@ func shotThree(bullet,directionX):
 		bulletInst.direction = directionX
 
 func hurt():
-	life-=1
+	Singleton.lifesPlayer-=1
 	$AnimationEffects.play("flickerLine")
 
 func idleEffects():

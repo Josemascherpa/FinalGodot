@@ -10,9 +10,13 @@ config_version=4
 
 [application]
 
-config/name="ProyectoFinalGodot"
+config/name="Escape From Spaceship"
 run/main_scene="res://Niveles/Level1.tscn"
-config/icon="res://icon.png"
+config/icon="res://Sprites && Escenas/life.png"
+
+[autoload]
+
+Singleton="*res://Singleton.gd"
 
 [display]
 

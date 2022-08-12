@@ -13,5 +13,5 @@ func _on_Timer_timeout():
 
 func _on_Heart_body_entered(body):
 	if(body.get_name()=="Player"):
-		body.life+=1
+		Singleton.lifesPlayer+=1
 		queue_free()
