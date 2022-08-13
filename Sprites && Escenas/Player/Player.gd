@@ -19,13 +19,15 @@ var life=3
 var stayBoton=false
 var withShield:bool=false
 var noShot:bool=false
+var playerDeath:bool=false
+var noRun=false
 
 func _ready():
 	set_process_input(true)
 	
 	
 func _process(delta):	
-	
+	Death()
 	if (Input.is_action_just_pressed("shot") && !noShot):		
 		match rainOfBullets:
 			false: shot(bullet_normal,$Sprite.scale.x)
@@ -36,12 +38,24 @@ func _process(delta):
 		withShield=true
 		protect()
 		shieldPU=false
+	
 		
 	
 func _physics_process(_delta):	
-	move_and_slide(moveAndAnimations())
-
-
+	if(!noRun):
+		move_and_slide(moveAndAnimations())
+	
+func SceneDeath():##ACA LLAMAR A UNA ESCENA DE MAIN MENU O RESTART LVL EN OTRA ESCENA
+	get_tree().paused=true
+	
+func Death():
+	if(Singleton.lifesPlayer<=0 && !playerDeath):
+		playerDeath=true
+		noShot=true
+		noRun=true
+		$AnimationPlayer.stop()
+		$AnimationPlayer.play("Death")
+		
 func moveAndAnimations() -> Vector2:#retorno el vector2 para no hacerlo en el evento y procesar todo por fuera, y solo devolver el resultado
 	var movement = Vector2()
 	if (Input.is_action_pressed("move_up")):

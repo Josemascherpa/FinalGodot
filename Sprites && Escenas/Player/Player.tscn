@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Sprites && Escenas/Player/SpriteSheet.png" type="Texture" id=1]
 [ext_resource path="res://PowerUps/Protect/Protect.tscn" type="PackedScene" id=2]
@@ -36,6 +36,36 @@ shader_param/line_thickness = 0.0
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 7.75, 25.5625 )
+
+[sub_resource type="Animation" id=12]
+resource_name = "Death"
+length = 1.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6, 1, 1.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 4, 5, 2 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1.8 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "SceneDeath"
+} ]
+}
 
 [sub_resource type="Animation" id=4]
 resource_name = "Idle"
@@ -174,7 +204,7 @@ scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 1 )
 hframes = 4
 vframes = 4
-frame = 13
+frame = 14
 
 [node name="position1" type="Position2D" parent="Sprite"]
 position = Vector2( 16.6667, -2 )
@@ -204,6 +234,7 @@ shape = SubResource( 1 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "Idle"
 playback_speed = 2.29
+anims/Death = SubResource( 12 )
 anims/Idle = SubResource( 4 )
 anims/RESET = SubResource( 3 )
 anims/Run = SubResource( 5 )
