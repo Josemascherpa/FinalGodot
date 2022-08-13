@@ -1,6 +1,6 @@
 extends CanvasLayer
 
-
+export (PackedScene) var mainmenu
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -35,7 +35,11 @@ func Pause():
 	if(get_tree().paused):
 		$Control/Play.visible=true
 		$Control/MainMenu.visible=true
+		$Control/TextureButton.disabled=true
+		$Control/TextureButton.visible=false
 	else:
+		$Control/TextureButton.disabled=false
+		$Control/TextureButton.visible=true
 		$Control/Play.visible=false
 		$Control/MainMenu.visible=false
 
@@ -48,4 +52,6 @@ func _on_Play_pressed():
 
 
 func _on_MainMenu_pressed():
-	print("CARGO MENU PRINCIPAL")
+		#get_node("/root/Level1").queue_free()
+		#get_node("/root").add_child(mainmenu.instance())
+	pass
