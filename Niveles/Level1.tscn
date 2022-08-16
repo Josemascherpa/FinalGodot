@@ -1,7 +1,7 @@
 [gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://Tileset/Ship.tres" type="TileSet" id=1]
-[ext_resource path="res://Sprites && Escenas/Player/Player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Trampas/Rayo/Ray.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Trampas/Tower/FireTower.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Boton/Boton.tscn" type="PackedScene" id=5]
@@ -112,6 +112,7 @@ texture = ExtResource( 11 )
 
 [node name="Spike" parent="Spikes" instance=ExtResource( 12 )]
 position = Vector2( 1570, 299 )
+cooldown = 4
 
 [node name="Spike2" parent="Spikes" instance=ExtResource( 12 )]
 position = Vector2( 1643, 299 )
@@ -120,6 +121,7 @@ cooldown = 3
 [node name="Spike3" parent="Spikes" instance=ExtResource( 12 )]
 position = Vector2( 3029, 422 )
 scale = Vector2( 1.08, 0.658 )
+cooldown = 3
 
 [node name="Traps" type="Node2D" parent="."]
 
@@ -155,10 +157,12 @@ cooldown = 2
 
 [node name="FireColumn" parent="Traps" instance=ExtResource( 4 )]
 position = Vector2( 858, 569 )
+cooldown = 3.0
 
 [node name="FireColumn2" parent="Traps" instance=ExtResource( 4 )]
 position = Vector2( 1216, 569 )
 SPEEDROTATION = 10000
+cooldown = 2.0
 
 [node name="FireColumn3" parent="Traps" instance=ExtResource( 4 )]
 position = Vector2( 2043, 387 )
@@ -198,18 +202,6 @@ texture = ExtResource( 8 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="MainMenu" type="TextureButton" parent="GUI/Control"]
-pause_mode = 2
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-margin_left = -178.0
-margin_top = -355.0
-margin_right = 222.0
-margin_bottom = -255.0
-texture_normal = ExtResource( 16 )
-
 [node name="Play" type="TextureButton" parent="GUI/Control"]
 pause_mode = 2
 anchor_left = 0.5
@@ -236,9 +228,21 @@ action_mode = 0
 texture_normal = ExtResource( 14 )
 expand = true
 
+[node name="MainMenu" type="TextureButton" parent="GUI/Control"]
+pause_mode = 2
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -178.0
+margin_top = -355.0
+margin_right = 222.0
+margin_bottom = -255.0
+texture_normal = ExtResource( 16 )
+
 [connection signal="body_entered" from="Boton" to="Player" method="_on_Boton_body_entered"]
 [connection signal="body_exited" from="Boton" to="Player" method="_on_Boton_body_exited"]
 [connection signal="body_entered" from="doorLvl1" to="Player" method="_on_doorLvl1_body_entered"]
-[connection signal="pressed" from="GUI/Control/MainMenu" to="GUI" method="_on_MainMenu_pressed"]
 [connection signal="pressed" from="GUI/Control/Play" to="GUI" method="_on_Play_pressed"]
 [connection signal="pressed" from="GUI/Control/TextureButton" to="GUI" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="GUI/Control/MainMenu" to="GUI" method="_on_MainMenu_pressed"]

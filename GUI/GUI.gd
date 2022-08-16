@@ -1,15 +1,5 @@
 extends CanvasLayer
 
-export (PackedScene) var mainmenu
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
 func _process(delta):
 	lifes()
 	Pause()
@@ -34,7 +24,7 @@ func lifes():
 func Pause():	
 	if(get_tree().paused):
 		$Control/Play.visible=true
-		$Control/MainMenu.visible=true
+		$Control/MainMenu.visible=true		
 		$Control/TextureButton.disabled=true
 		$Control/TextureButton.visible=false
 	else:
@@ -42,6 +32,7 @@ func Pause():
 		$Control/TextureButton.visible=true
 		$Control/Play.visible=false
 		$Control/MainMenu.visible=false
+		
 
 func _on_TextureButton_pressed():
 	get_tree().paused=!get_tree().paused
@@ -52,6 +43,6 @@ func _on_Play_pressed():
 
 
 func _on_MainMenu_pressed():
-		#get_node("/root/Level1").queue_free()
-		#get_node("/root").add_child(mainmenu.instance())
-	pass
+		get_tree().change_scene("res://Niveles/MainMenu.tscn")
+		
+	

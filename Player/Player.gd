@@ -1,8 +1,8 @@
 extends KinematicBody2D
 
 ##USAR DOS NAIMATION PARA HACER EFECTOS DE SHADERS 
-onready var boton=get_node("/root/Manager/Level1/Boton")
-onready var doorLvl1=get_node("/root/Manager/Level1/doorLvl1")
+onready var boton=get_node("/root/Level1/Boton")
+onready var doorLvl1=get_node("/root/Level1/doorLvl1")
 export (PackedScene) var lvl2
 export(float) var SPEED=180
 export (PackedScene) var bullet_normal #BALA NORMAL
@@ -22,9 +22,8 @@ var noShot:bool=false
 var playerDeath:bool=false
 var noRun=false
 
-func _ready():
-	set_process_input(true)
-	
+func _ready():	
+	set_process_input(true)	
 	
 func _process(delta):	
 	Death()
@@ -37,16 +36,17 @@ func _process(delta):
 	if(shieldPU):
 		withShield=true
 		protect()
-		shieldPU=false
-	
-		
+		shieldPU=false			
 	
 func _physics_process(_delta):	
 	if(!noRun):
 		move_and_slide(moveAndAnimations())
 	
-func SceneDeath():##ACA LLAMAR A UNA ESCENA DE MAIN MENU O RESTART LVL EN OTRA ESCENA
-	get_tree().paused=true
+func SceneDeath():##ACA LLAMAR A UNA ESCENA DE MAIN MENU O RESTART LVL EN OTRA ESCENA	
+	get_tree().change_scene("res://Niveles/Death.tscn")
+	Singleton.lifesPlayer=3
+	playerDeath=false
+	
 	
 func Death():
 	if(Singleton.lifesPlayer<=0 && !playerDeath):
@@ -116,7 +116,8 @@ func _on_TimerShield_timeout():###SHIELD
 	TimingShield.stop()
 
 func _on_Boton_body_entered(body):
-	stayBoton=true
+	if(body.name == self.name):
+		stayBoton=true
 
 
 func _on_Boton_body_exited(body):
@@ -126,11 +127,11 @@ func _on_doorLvl1_body_entered(body):
 	if(body.name == "Player" && doorLvl1.open):
 		noShot=true
 		SPEED=0
+		Singleton.Level+=1
 		$Tween.interpolate_property(self, "scale", Vector2(1,1), Vector2(0,0), 2.0, Tween.TRANS_LINEAR, Tween.EASE_OUT)
 		$Tween.start()
 
 
 func _on_Tween_tween_all_completed():	
-	get_node("/root/Manager/Level1").queue_free()
-	get_node("/root/Manager").add_child(lvl2.instance())
+	get_tree().change_scene("res://Niveles/Level2.tscn")
 	

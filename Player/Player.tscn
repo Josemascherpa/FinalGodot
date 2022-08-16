@@ -1,9 +1,9 @@
 [gd_scene load_steps=16 format=2]
 
-[ext_resource path="res://Sprites && Escenas/Player/SpriteSheet.png" type="Texture" id=1]
-[ext_resource path="res://PowerUps/Protect/Protect.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Player/SpriteSheet.png" type="Texture" id=1]
+[ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Sprites && Escenas/Bullet/BulletNormal.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Sprites && Escenas/Player/Player.gd" type="Script" id=4]
+[ext_resource path="res://PowerUps/Protect/Protect.tscn" type="PackedScene" id=4]
 
 [sub_resource type="Shader" id=7]
 code = "shader_type canvas_item;
@@ -39,7 +39,7 @@ extents = Vector2( 7.75, 25.5625 )
 
 [sub_resource type="Animation" id=12]
 resource_name = "Death"
-length = 1.8
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -59,7 +59,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 1.8 ),
+"times": PoolRealArray( 2 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
 "args": [  ],
@@ -191,9 +191,9 @@ tracks/0/keys = {
 
 [node name="Player" type="KinematicBody2D"]
 position = Vector2( 477, 510 )
-script = ExtResource( 4 )
+script = ExtResource( 2 )
 bullet_normal = ExtResource( 3 )
-shield = ExtResource( 2 )
+shield = ExtResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
@@ -204,7 +204,7 @@ scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 1 )
 hframes = 4
 vframes = 4
-frame = 14
+frame = 13
 
 [node name="position1" type="Position2D" parent="Sprite"]
 position = Vector2( 16.6667, -2 )

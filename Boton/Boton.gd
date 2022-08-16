@@ -1,6 +1,6 @@
 extends Area2D
 
-onready var doorlvl1= get_node("/root/Manager/Level1/doorLvl1")
+onready var doorlvl1= get_node("/root/Level1/doorLvl1")
 var opened:bool=false
 
 func Press():
@@ -13,4 +13,4 @@ func Press():
 		$AnimationPlayer.play("UnPress")
 		doorlvl1.Close()
 		$Particles2D.visible=true
-	## LLAMAR PUERTA QUE SE ACTIVE 
+	
