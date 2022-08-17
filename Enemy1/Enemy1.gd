@@ -1,31 +1,25 @@
 extends KinematicBody2D
-var SPEED=500
+
+export (float) var velocidad
+var pos_objetivo = Vector2()
+var nav = Navigation2D
+var path = []
+
+
+# Called when the node enters the scene tree for the first time.
 func _ready():
-	set_process_input(true)
+	set_physics_process(true)
+	nav = get_tree().get_nodes_in_group("nav")[0]
+	pos_objetivo = get_tree().get_nodes_in_group("player")[0].position
+	set_path()
+	
+func _physics_process(delta):	
+	if(path.size()>1):
+		var d= self.position.distance_to(path[0])
+		if(d>1):		
+			self.set_position(self.position.linear_interpolate(path[0],(velocidad*delta)/d))
+		else:
+			path.remove(0)
 
-func _physics_process(delta):
-	move_and_slide(moveAndAnimations())
-
-func moveAndAnimations() -> Vector2:#retorno el vector2 para no hacerlo en el evento y procesar todo por fuera, y solo devolver el resultado
-	var movement = Vector2()
-	if (Input.is_action_pressed("move_up")):
-		movement += Vector2(0, -1)
-		$AnimationPlayer.play("Run")
-	if (Input.is_action_pressed("move_down")):
-		movement += Vector2(0, 1)		
-		$AnimationPlayer.play("Run")
-	if (Input.is_action_pressed("move_left")):
-		movement += Vector2(-1, 0)
-		$AnimationPlayer.play("Run")
-		#$Sprite.scale.x=-flip
-	if (Input.is_action_pressed("move_right")):
-		movement += Vector2(1, 0)		
-		$AnimationPlayer.play("Run")		
-		#$Sprite.scale.x = flip	
-	if(Input.is_action_just_pressed("shot") && movement == Vector2(0,0)):
-		$AnimationPlayer.play("Shot")		
-	elif(movement == Vector2(0,0)):		
-		$AnimationPlayer.play("Idle")	
-		
-	movement = movement.normalized()*SPEED	
-	return movement
+func set_path():
+	path=nav.get_simple_path(self.global_position,pos_objetivo,false)
