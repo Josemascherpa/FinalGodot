@@ -1,6 +1,7 @@
 extends CanvasLayer
 
 func _process(delta):
+	print(Singleton.lifesPlayer)
 	lifes()
 	Pause()
 	
@@ -15,6 +16,8 @@ func lifes():
 					child.visible = false
 		2:
 			for child in get_children():
+				if(child.name=="life2"):
+					child.visible=true
 				if(child.name == "life3"):
 					child.visible = false
 		3:
