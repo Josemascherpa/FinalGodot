@@ -1,7 +1,7 @@
 extends Area2D
 
 export (PackedScene) var Heart
-export (PackedScene) var Protect
+export (PackedScene) var Shield
 export (PackedScene) var RainOfBullets
 export var positionGuard = Vector2()
 export var positionGuard2 = Vector2()
@@ -82,14 +82,46 @@ func hurt():
 	Singleton.lifesPlayer-=1
 
 func _on_Enemy_area_entered(area):
-	if(area.is_in_group("bullet")):
+	if(area.is_in_group("bullet") || area.is_in_group("shield")):
 		speed=0
 		kill=true		
 		$AnimationPlayer.play("Death")
 
 func kill():
-	var powerups = preload("res://PowerUps/Heart/Heart.tscn").instance()
-	get_parent().add_child(powerups)
+	var numeroRandom = randi()%10+1
+	match numeroRandom:		
+		1:	
+			var powerups = Heart.instance()
+			get_parent().add_child(powerups)
+			powerups.global_position=self.global_position
+		2:
+			var powerups = Shield.instance()
+			get_parent().add_child(powerups)
+			powerups.global_position=self.global_position
+		3:
+			var powerups = RainOfBullets.instance()
+			get_parent().add_child(powerups)
+			powerups.global_position=self.global_position			
+		4:
+			print("Nada")
+			pass
+		5:
+			print("Nada")
+			pass
+		6:
+			print("Nada")
+			pass
+		7:
+			print("Nada")
+			pass
+		8:
+			print("Nada")
+			pass
+		9:
+			print("Nada")
+			pass
+		10:
+			print("Nada")
+			pass
 	
-	powerups.global_position=self.global_position
 	queue_free()

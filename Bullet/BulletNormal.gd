@@ -12,7 +12,7 @@ func _physics_process(delta):
 		$Sprite.scale.x=1
 	move_local_x(direction*SPEED*delta)
 
-func _on_Bullet_body_entered(body):
+func _on_Bullet_body_entered(body):	
 	SPEED=0
 	$AnimationPlayer.play("Collision") 
 
@@ -22,4 +22,5 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func _on_Bullet_area_entered(area):
-	queue_free()
+	if(!area.is_in_group("bullet")):
+		queue_free()

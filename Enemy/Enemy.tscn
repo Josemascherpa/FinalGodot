@@ -1,10 +1,10 @@
 [gd_scene load_steps=25 format=2]
 
-[ext_resource path="res://Niveles/Enemy.gd" type="Script" id=1]
+[ext_resource path="res://Enemy/Enemy.gd" type="Script" id=1]
 [ext_resource path="res://Enemy/enemy.png" type="Texture" id=2]
 [ext_resource path="res://PowerUps/Heart/Heart.tscn" type="PackedScene" id=3]
 [ext_resource path="res://PowerUps/RainOfBullets/RainOfBullets.tscn" type="PackedScene" id=4]
-[ext_resource path="res://PowerUps/Protect/Protect.tscn" type="PackedScene" id=5]
+[ext_resource path="res://PowerUps/Protect/Shield.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=19]
 extents = Vector2( 9.8125, 10.375 )
@@ -341,7 +341,7 @@ tracks/3/keys = {
 position = Vector2( 1736, -613 )
 script = ExtResource( 1 )
 Heart = ExtResource( 3 )
-Protect = ExtResource( 5 )
+Shield = ExtResource( 5 )
 RainOfBullets = ExtResource( 4 )
 positionGuard = Vector2( 2611, -729 )
 positionGuard2 = Vector2( 1550, -314 )

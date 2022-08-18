@@ -248,6 +248,7 @@ shield = ExtResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+zoom = Vector2( 3, 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 8 )
