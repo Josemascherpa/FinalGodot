@@ -1,9 +1,11 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Player/SpriteSheet.png" type="Texture" id=1]
 [ext_resource path="res://Player/Player.gd" type="Script" id=2]
 [ext_resource path="res://Bullet/BulletNormal.tscn" type="PackedScene" id=3]
 [ext_resource path="res://PowerUps/Protect/Protect.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Sonidos/hurt.wav" type="AudioStream" id=5]
+[ext_resource path="res://Sonidos/power.wav" type="AudioStream" id=6]
 
 [sub_resource type="Shader" id=7]
 code = "shader_type canvas_item;
@@ -248,7 +250,6 @@ shield = ExtResource( 4 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
-zoom = Vector2( 3, 3 )
 
 [node name="Sprite" type="Sprite" parent="."]
 material = SubResource( 8 )
@@ -259,21 +260,21 @@ vframes = 4
 frame = 13
 
 [node name="position1" type="Position2D" parent="Sprite"]
-position = Vector2( 16.6667, -2 )
+position = Vector2( 11.4, -1.93332 )
 scale = Vector2( 0.666667, 0.666667 )
 __meta__ = {
 "_gizmo_extents_": 7.1
 }
 
 [node name="position2" type="Position2D" parent="Sprite"]
-position = Vector2( 16.6667, 7.33331 )
+position = Vector2( 11.4, 7.39999 )
 scale = Vector2( 0.666667, 0.666667 )
 __meta__ = {
 "_gizmo_extents_": 7.1
 }
 
 [node name="position3" type="Position2D" parent="Sprite"]
-position = Vector2( 16.6667, 16.6667 )
+position = Vector2( 11.4, 16.7334 )
 scale = Vector2( 0.666667, 0.666667 )
 __meta__ = {
 "_gizmo_extents_": 7.1
@@ -314,6 +315,16 @@ anims/flickerLine = SubResource( 9 )
 anims/idle = SubResource( 11 )
 
 [node name="Tween" type="Tween" parent="."]
+
+[node name="hurt" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+volume_db = -30.689
+bus = "Sfx"
+
+[node name="power" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -18.186
+bus = "Sfx"
 
 [connection signal="timeout" from="TimerRainOfBullets" to="." method="_on_TimerRainOfBullets_timeout"]
 [connection signal="timeout" from="TimerShield" to="." method="_on_TimerShield_timeout"]

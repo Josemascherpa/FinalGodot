@@ -1,12 +1,12 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Tileset/Ship.tres" type="TileSet" id=1]
 [ext_resource path="res://Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Trampas/Rayo/Ray.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Trampas/Tower/FireTower.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Boton/Boton.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Puertas/doorLvl1.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Niveles/Level2.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Puertas/door.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Fuentes/fuente2.TTF" type="DynamicFontData" id=7]
 [ext_resource path="res://Sprites && Escenas/life.png" type="Texture" id=8]
 [ext_resource path="res://Sprites && Escenas/backgroudn.png" type="Texture" id=9]
 [ext_resource path="res://Sprites && Escenas/stair.png" type="Texture" id=10]
@@ -14,8 +14,8 @@
 [ext_resource path="res://Trampas/Spikes/Spike.tscn" type="PackedScene" id=12]
 [ext_resource path="res://GUI/GUI.gd" type="Script" id=13]
 [ext_resource path="res://GUI/pause.png" type="Texture" id=14]
-[ext_resource path="res://play.png" type="Texture" id=15]
-[ext_resource path="res://GUI/mainmenu.png" type="Texture" id=16]
+[ext_resource path="res://Sonidos/lvl1.wav" type="AudioStream" id=16]
+[ext_resource path="res://Sonidos/SelectButton.wav" type="AudioStream" id=17]
 
 [sub_resource type="Curve" id=1]
 _data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.438636 ), 0.0, 0.0, 0, 0 ]
@@ -60,6 +60,30 @@ scale = 2.0
 scale_random = 1.0
 scale_curve = SubResource( 7 )
 
+[sub_resource type="DynamicFont" id=11]
+size = 300
+outline_size = 12
+outline_color = Color( 0.537255, 0.376471, 0.458824, 1 )
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=10]
+size = 48
+outline_size = 1
+outline_color = Color( 0.67451, 0.321569, 0.435294, 1 )
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=8]
+size = 28
+outline_size = 1
+outline_color = Color( 0.662745, 0.286275, 0.407843, 1 )
+font_data = ExtResource( 7 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 18
+outline_size = 1
+outline_color = Color( 0.611765, 0.262745, 0.376471, 1 )
+font_data = ExtResource( 7 )
+
 [node name="Level1" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -72,12 +96,11 @@ tile_data = PoolIntArray( -262097, 49, 0, -262096, 46, 0, -262095, 48, 0, -26209
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 442, 543 )
 z_index = 1
-lvl2 = ExtResource( 7 )
 
-[node name="Boton" parent="." instance=ExtResource( 5 )]
+[node name="Boton" parent="." groups=["boton"] instance=ExtResource( 5 )]
 position = Vector2( 1775, 630 )
 
-[node name="doorLvl1" parent="." instance=ExtResource( 6 )]
+[node name="door" parent="." groups=["door"] instance=ExtResource( 6 )]
 position = Vector2( 3234, 59 )
 
 [node name="universe" type="Sprite" parent="."]
@@ -202,20 +225,23 @@ texture = ExtResource( 8 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 
-[node name="Play" type="TextureButton" parent="GUI/Control"]
+[node name="Play" type="Button" parent="GUI/Control"]
 pause_mode = 2
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-margin_left = -21.0
-margin_top = -43.0
-margin_right = 579.0
-margin_bottom = 557.0
+margin_left = -111.0
+margin_top = -33.0
+margin_right = 1611.0
+margin_bottom = 567.0
 rect_scale = Vector2( 0.15, 0.15 )
-texture_normal = ExtResource( 15 )
+custom_colors/font_color_hover = Color( 0.784314, 0.615686, 0.670588, 1 )
+custom_fonts/font = SubResource( 11 )
+text = "RESUME"
+flat = true
 
-[node name="TextureButton" type="TextureButton" parent="GUI/Control"]
+[node name="Pause" type="TextureButton" parent="GUI/Control"]
 pause_mode = 2
 anchor_top = -0.48
 anchor_right = 1.0
@@ -228,7 +254,7 @@ action_mode = 0
 texture_normal = ExtResource( 14 )
 expand = true
 
-[node name="MainMenu" type="TextureButton" parent="GUI/Control"]
+[node name="MainMenu" type="Button" parent="GUI/Control"]
 pause_mode = 2
 anchor_left = 0.5
 anchor_top = 1.0
@@ -238,11 +264,67 @@ margin_left = -178.0
 margin_top = -355.0
 margin_right = 222.0
 margin_bottom = -255.0
-texture_normal = ExtResource( 16 )
+custom_colors/font_color_hover = Color( 0.537255, 0.376471, 0.458824, 1 )
+custom_fonts/font = SubResource( 10 )
+text = "MAIN MENU"
+flat = true
+
+[node name="SoundMusic" type="Button" parent="GUI/Control"]
+margin_left = 675.792
+margin_top = 163.0
+margin_right = 961.792
+margin_bottom = 198.0
+rect_rotation = 25.0
+custom_fonts/font = SubResource( 8 )
+text = "SOUND MUSIC"
+flat = true
+
+[node name="Label" type="Label" parent="GUI/Control/SoundMusic"]
+margin_left = 118.758
+margin_top = 41.7194
+margin_right = 158.758
+margin_bottom = 60.7194
+custom_fonts/font = SubResource( 9 )
+text = "ON"
+
+[node name="SoundSFX" type="Button" parent="GUI/Control"]
+margin_left = 657.792
+margin_top = 233.0
+margin_right = 900.792
+margin_bottom = 268.0
+rect_rotation = 25.0
+custom_fonts/font = SubResource( 8 )
+text = "SOUND SFX"
+flat = true
+
+[node name="Label" type="Label" parent="GUI/Control/SoundSFX"]
+margin_left = 98.702
+margin_top = 38.9346
+margin_right = 138.702
+margin_bottom = 57.9346
+custom_fonts/font = SubResource( 9 )
+text = "ON"
+
+[node name="SelectButton" type="AudioStreamPlayer" parent="GUI/Control" groups=["button"]]
+pause_mode = 2
+stream = ExtResource( 17 )
+volume_db = -39.0
+bus = "Sfx"
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 16 )
+volume_db = -30.0
+autoplay = true
+bus = "Music"
 
 [connection signal="body_entered" from="Boton" to="Player" method="_on_Boton_body_entered"]
 [connection signal="body_exited" from="Boton" to="Player" method="_on_Boton_body_exited"]
-[connection signal="body_entered" from="doorLvl1" to="Player" method="_on_doorLvl1_body_entered"]
+[connection signal="body_entered" from="door" to="Player" method="_on_door_body_entered"]
+[connection signal="mouse_entered" from="GUI/Control/Play" to="GUI" method="_on_Play_mouse_entered"]
 [connection signal="pressed" from="GUI/Control/Play" to="GUI" method="_on_Play_pressed"]
-[connection signal="pressed" from="GUI/Control/TextureButton" to="GUI" method="_on_TextureButton_pressed"]
+[connection signal="pressed" from="GUI/Control/Pause" to="GUI" method="_on_TextureButton_pressed"]
+[connection signal="mouse_entered" from="GUI/Control/MainMenu" to="GUI" method="_on_MainMenu_mouse_entered"]
 [connection signal="pressed" from="GUI/Control/MainMenu" to="GUI" method="_on_MainMenu_pressed"]
+[connection signal="pressed" from="GUI/Control/SoundMusic" to="GUI" method="_on_SoundMusic_pressed"]
+[connection signal="pressed" from="GUI/Control/SoundSFX" to="GUI" method="_on_SoundSFX_pressed"]

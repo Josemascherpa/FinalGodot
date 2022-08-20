@@ -309,7 +309,7 @@ tracks/8/keys = {
 "values": [ 2 ]
 }
 
-[node name="Spike" type="Area2D"]
+[node name="Spike" type="Area2D" groups=["bullet"]]
 position = Vector2( 0, -80 )
 script = ExtResource( 1 )
 

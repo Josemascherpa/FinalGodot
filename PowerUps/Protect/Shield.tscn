@@ -81,7 +81,7 @@ tracks/0/keys = {
 "values": [ -0.8 ]
 }
 
-[node name="Shield" type="Area2D"]
+[node name="Shield" type="Area2D" groups=["power"]]
 script = ExtResource( 2 )
 __meta__ = {
 "_editor_description_": ""

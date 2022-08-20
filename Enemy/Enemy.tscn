@@ -287,7 +287,6 @@ extents = Vector2( 10.5, 13 )
 [sub_resource type="Animation" id=12]
 resource_name = "Walk"
 length = 0.8
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -346,7 +345,7 @@ RainOfBullets = ExtResource( 4 )
 positionGuard = Vector2( 2611, -729 )
 positionGuard2 = Vector2( 1550, -314 )
 speed = 100.0
-seeEnemy = 180.0
+seePlayer = 200.0
 
 [node name="Sprite" type="Sprite" parent="."]
 scale = Vector2( 1.85714, 1.78571 )
@@ -355,6 +354,7 @@ hframes = 6
 vframes = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Idle"
 anims/Attack = SubResource( 11 )
 anims/Death = SubResource( 18 )
 anims/Idle = SubResource( 9 )

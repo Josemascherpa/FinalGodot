@@ -118,7 +118,7 @@ tracks/3/keys = {
 "values": [ -1 ]
 }
 
-[node name="RainOfBullets" type="Area2D"]
+[node name="RainOfBullets" type="Area2D" groups=["power"]]
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]

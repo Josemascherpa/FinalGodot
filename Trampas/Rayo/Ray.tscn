@@ -230,7 +230,7 @@ tracks/4/keys = {
 "values": [ Vector2( 0, -104.5 ) ]
 }
 
-[node name="Ray" type="Area2D"]
+[node name="Ray" type="Area2D" groups=["bullet"]]
 position = Vector2( 841, 957 )
 script = ExtResource( 1 )
 cooldown = 3
